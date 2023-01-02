@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import db.DB;
+import db.DbIntegrityException;
 
 public class Program {
 
@@ -35,7 +36,7 @@ public class Program {
 			System.out.println("Done! Rows affected: " + rowsAffected);
 		}
 		catch(SQLException e) {
-			e.printStackTrace();
+			throw new DbIntegrityException(e.getMessage());
 		}
 		finally {
 			DB.closeStatement(st);
